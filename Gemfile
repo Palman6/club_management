@@ -69,3 +69,15 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem 'pry'
+gem 'devise-bootstrap-views', '~> 1.0'
+
+gem "bootstrap", "~> 5.2.0"
+
+gem 'jquery-rails'
+
+gem "sassc-rails"
+
+gem "font-awesome-sass", "~> 6.5.1"
+
+gem "pundit", "~> 2.3"

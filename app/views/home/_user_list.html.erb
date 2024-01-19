@@ -1,0 +1,70 @@
+<div class="col-lg-12 mx-auto mt-3">
+   <div class="card">
+      <div class="card-header">
+      <h2 class="text-center card-title"> User Lists </h2>
+      </div>
+      <div class="card-body">
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Company</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+         <% if @users %>
+           <% @users.each do |user| %>
+            <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.company %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%= user.role %></td>
+            </tr>
+           <% end %>
+         <% end %>
+        </tbody>
+        </table>
+      </div>
+   </div>
+</div>
+
+
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+
+    <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+
+    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit t('.update'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<p><%= t('.unhappy') %>? <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>

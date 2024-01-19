@@ -1,0 +1,52 @@
+<div class="col-lg-12 mx-auto mt-3">
+   <div class="card">
+      <div class="card-header">
+      <h2 class="text-center card-title"> Total Users </h2>
+      </div>
+      <div class="card-body">
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Company</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Salutation</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         <% if @users %>
+           <% @users.each do |user| %>
+            <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.company %></td>
+            <td><%= user.designation %></td>
+            <td><%= user.gender %></td>
+            <td><%= user.role %></td>
+            <td>
+             <% if policy(user).edit? %>
+               <%= link_to edit_user_registration_path do %>
+                <i class="fa-solid fa-pen me-3"></i>
+               <% end %>
+             <% end %>
+
+             <% if policy(user).destroy? %>
+               <%= link_to user, method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa-solid fa-trash me-3"></i>
+               <% end %>
+             <% end %>
+             
+            </td>
+            </tr>
+           <% end %>
+         <% end %>
+        </tbody>
+        </table>
+      </div>
+   </div>
+</div>
