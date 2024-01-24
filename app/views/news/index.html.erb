@@ -1,0 +1,27 @@
+<div class="col-lg-12 mx-auto mt-3">
+   <div class="card">
+      <div class="card-header">
+
+      <div class="card-header d-flex ">
+        <div style="width: 50%" class="d-flex justify-content-end">
+        <h2 class="card-title"> News Feed </h2>
+         </div>
+         <% if policy(@news).create? %>
+        <div style="width: 50%" class="d-flex justify-content-end">
+        <a href="/news/new" class="btn btn-primary">Add News</a>
+        </div>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <% @news.each do |news| %>
+            <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= news.title %></h5>
+                <p class="card-text"><%= news.content %></p>
+                <%= image_tag(news.image, style: "width: 400px; height: auto") %>
+            </div>
+            </div>
+        <% end %>
+      </div>
+   </div>
+</div>

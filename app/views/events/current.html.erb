@@ -1,0 +1,29 @@
+
+<%= render 'event_header' %>
+<%= render 'category' %> 
+<% if !@events.current_events.empty? %> 
+    <% @events.current_events.each do |event| %>
+        <div class="card m-4" style="width: 23.3rem;">
+           <%= image_tag(event.image, style: "width: 100%; height: auto", class: 'p-2') %>   
+            <div class="card-body">
+            <h5 class="card-title">Name: <%= event.name %></h5>
+            <p class="card-text">Description: <%= event.description %></p>
+            <p class="card-text">Date: <%= event.date %></p>
+            <p class="card-text">Location: <%= event.location %></p>
+            <%= link_to event, class: "btn btn-primary" do %>
+            View Detail
+            <% end %>
+            <% if policy(event).destroy? %>
+                <%= link_to event, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' do %>
+                Delete
+                <% end %>
+            <% end %>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+<div class="card text-center mt-4">
+     <h5>No current Event</h5>
+</div>
+<% end %>
+<%= render 'closing_tag' %>

@@ -1,8 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
-
-    include Pundit::Authorization
-
-    after_action :verify_authorized, unless: :devise_controller?
-        
+  before_action :authenticate_user!
 end

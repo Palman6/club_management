@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>Event Update Notice</h4>
+    <p>
+      Hi <%= @user.name %>,
+    </p>
+    <p>
+     The event you are attending has been updated
+      Please visit the following link to view the changes: <%= link_to 'View Event', event_url(@event, host: 'localhost:3000')%>.
+    </p>
+    <p>Thanks you and have a great day!</p>
+  </body>
+</html>

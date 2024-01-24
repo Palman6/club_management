@@ -1,19 +1,33 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root to: "users#index"
+  mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql' if Rails.env.development?
+
+  post '/graphql', to: 'graphql#execute'
+
+  root to: 'users#index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
 
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # match '/users',   to: 'users#index',   via: 'get'
   resources :users
 
-  get '/users/edit', to: 'users/registrations#edit'
-  # get '/users', to: 'users/registrations#destroy'
+  # event categories routes
+  get 'events/my_event', to: 'events#my_event'
+  get 'events/past', to: 'events#past'
+  get 'events/upcoming', to: 'events#upcoming'
+  get 'events/current', to: 'events#current'
 
-  get "my_profile", to: "users#my_profile"
+  resources :events
+
+  get 'my_profile', to: 'users#my_profile'
+  get 'events', to: 'events#show'
+
+  post 'create_attending', to: 'attendings#create'
+  delete 'destroy_attending', to: 'attendings#destroy'
+
   resources :users, only: [:destroy]
 
+  resources :news
 end

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
+  include Pundit::Authorization
+
   before_action :authenticate_user!
 
   def index
@@ -12,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    get_user_by_id
   end
 
   def edit
-    @user = User.find(params[:id])
+    get_user_by_id
     authorize @user
   end
 
@@ -25,35 +29,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    get_user_by_id
     authorize @user
 
     if @user.destroy
-      flash[:notice] = "User deleted successfully."
+      flash[:notice] = 'User deleted successfully.'
     else
-      flash[:alert] = "Unable to delete user."
+      flash[:alert] = 'Unable to delete user.'
     end
-
     redirect_to root_path
   end
 
-  # def update
-  #   @user = current_user
-  #   if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-  #     params[:user].delete(:password)
-  #     params[:user].delete(:password_confirmation)
-  # end
-  
-  #   Rails.logger.debug "Params: #{params.inspect}"
-  #   if @user.update_without_password(user_params)
-  #     redirect_to users, notice: 'Profile updated successfully.'
-  #   else
-  #     Rails.logger.debug "Errors: #{@user.errors}"
-  #     render :edit
-  #   end
-  # end
-
-  # def getUserById(id)
-  #   @user = User.find(id);
-  # end
+  def get_user_by_id
+    @user = User.find(params[:id])
+  end
 end

@@ -1,0 +1,40 @@
+<% if policy(@event).update? %>
+<h4 class="panel-heading">Participants</h4>
+<table class="table" style="width: 50%">
+  <thead>
+    <tr>
+      <th scope="col">User Count</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event.attendees.each_with_index do | attendee, index |%>
+      <tr>
+        <td><%= index + 1 %></th>
+        <td><%= attendee.name %></td>
+        <td>
+          <%= link_to destroy_attending_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' do %>
+          Remove
+          <% end %>
+        </td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<% if (current_user.attended_event_ids.include?(@event.id) && !current_user.admin?) %>
+<table class="table" style="width: 50%">
+  <tbody>
+      <tr>
+        <td><%= current_user.name %></td>
+        <td>
+          <%= link_to destroy_attending_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' do %>
+          Remove
+          <% end %>
+        </td>
+     </tr>
+  </tbody>
+</table>
+<% end %>

@@ -19,7 +19,7 @@
         </thead>
         <tbody>
          <% if @users %>
-           <% @users.each do |user| %>
+           <% @users.each do |user, index| %>
             <tr>
             <th scope="row"><%= user.id %></th>
             <td><%= user.name %></td>
