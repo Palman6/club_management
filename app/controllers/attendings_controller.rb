@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This controller provides the participants contol for events
 class AttendingsController < ApplicationController
   include Pundit::Authorization
 

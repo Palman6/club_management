@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
+# This controller provides the overall control on graphql
 class GraphqlController < ApplicationController
-  # If accessing from outside this domain, nullify the session
-  # This allows for outside API access while preventing CSRF attacks,
-  # but you'll have to authenticate your user separately
-  # protect_from_forgery with: :null_session
-
   def execute
     variables = prepare_variables(params[:variables])
     query = params[:query]
@@ -44,10 +40,11 @@ class GraphqlController < ApplicationController
     end
   end
 
-  def handle_error_in_development(e)
-    logger.error e.message
-    logger.error e.backtrace.join("\n")
+  def handle_error_in_development(err)
+    logger.error err.message
+    logger.error err.backtrace.join("\n")
 
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: :internal_server_error
+    render json: { errors: [{ message: err.message, backtrace: err.backtrace }], data: {} },
+           status: :internal_server_error
   end
 end

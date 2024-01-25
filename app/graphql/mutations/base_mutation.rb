@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
+  # Mutaion class
   class BaseMutation < GraphQL::Schema::RelayClassicMutation
     include Pundit::Authorization
 

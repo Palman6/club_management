@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# base achema for application
 class ClubManagementSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)

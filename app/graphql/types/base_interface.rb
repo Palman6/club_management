@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# types
 module Types
+  # mutation types
   module BaseInterface
     include GraphQL::Schema::Interface
     edge_type_class(Types::BaseEdge)

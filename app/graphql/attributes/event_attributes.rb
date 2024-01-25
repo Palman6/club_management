@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Attributes
+  # Event attributes
   class Event < Types::BaseInputObject
     argument :id, ID, required: true
     argument :name, String, required: false

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# Event attributes types
 module Types
+  # mutation types
   class EventType < Types::BaseObject
     # description: 'Events fields'
 

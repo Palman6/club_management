@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# types
 module Types
+  # mutation types
   class BaseObject < GraphQL::Schema::Object
     include Pundit::Authorization
 

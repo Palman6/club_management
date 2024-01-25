@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This controller provides the overall control on News
 class NewsController < ApplicationController
   include Pundit::Authorization
 

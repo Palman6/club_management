@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# types
 module Types
+  # mutation types
   class QueryType < Types::BaseObject
     field :event, [Types::EventType], null: false
     field :get_event_by_id, Types::EventType, null: true do

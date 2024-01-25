@@ -1,1 +1,30 @@
 require: rubocop-rails
+# AllCops:
+#   SuggestExtensions: false
+
+AllCops:
+  Exclude:
+    - '.git/**/*'
+    - 'bin/**/*'
+    - 'coverage/**/*'
+    - 'db/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'public/**/*'
+    - 'spec/fixtures/**/*'
+    - 'config/puma.rb'
+    - 'Guardfile'
+    - 'scripts/**/*'
+    - 'local/**/*'
+    - 'spec/support/webmocks.rb'
+    - 'config/environments/*'
+    - 'lib/migrations/*'
+    - '.irbrc'
+    - 'config/initializers/*'
+    - 'app/graphql/*'
+
+Metrics/ClassLength:
+  Max: 150
+Metrics/MethodLength:
+  Enabled: false
+

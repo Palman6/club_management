@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Model
 class Event < ApplicationRecord
   scope :past_events, -> { where('date < ?', Time.zone.now) }
   scope :upcoming_events, -> { where('date > ?', DateTime.now) }
@@ -15,12 +16,12 @@ class Event < ApplicationRecord
   after_update :notify_user
 
   def notify_user
-    if persisted?
-        puts 'Sending emails to all prticipants'
-        participants = self.attendees.reject { |user| user.id == creator_id }
-        participants.each do |user|
-          EventsMailer.event_update_email(user, self).deliver_now
-        end
+    return unless persisted?
+
+    Rails.logger.info 'Sending emails to all prticipants'
+    participants = attendees.reject { |user| user.id == creator_id }
+    participants.each do |user|
+      EventsMailer.event_update_email(user, self).deliver_now
     end
   end
 end

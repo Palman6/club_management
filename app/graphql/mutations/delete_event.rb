@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
+  # Mutaion class
   class DeleteEvent < BaseMutation
     description 'Deletes a event by ID'
 

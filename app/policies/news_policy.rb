@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# NewsPolicy
 class NewsPolicy < ApplicationPolicy
   def index?
     true

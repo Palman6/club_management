@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This controller provides the overall control on Users
 class UsersController < ApplicationController
   include Pundit::Authorization
 
@@ -16,11 +17,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    get_user_by_id
+    user_by_id
   end
 
   def edit
-    get_user_by_id
+    user_by_id
     authorize @user
   end
 
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    get_user_by_id
+    user_by_id
     authorize @user
 
     if @user.destroy
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def get_user_by_id
+  def user_by_id
     @user = User.find(params[:id])
   end
 end

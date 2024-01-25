@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Resolvers
+  # description 'Fetch Event details'
   class Event < BaseResolver
     # description 'Fetch Event details'
 

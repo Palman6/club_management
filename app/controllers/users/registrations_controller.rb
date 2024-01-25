@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
+# Devise registration controllers
 module Users
+  # Devise registration controllers
   class RegistrationsController < Devise::RegistrationsController
     before_action :configure_sign_up_params, only: [:create]
-    # before_action :configure_account_update_params, only: [:update]
 
-    # New Solution
     before_action :configure_account_update_params, only: %i[edit update]
 
     protected

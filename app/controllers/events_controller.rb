@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
+# This controller provides the overall control on events
 class EventsController < ApplicationController
   include Pundit::Authorization
 
   def index
-    get_all_event
+    all_events
     authorize @events
   end
 
   def show
-    get_all_event
-    get_event_by_id
+    all_events
+    event_by_id
     authorize @event
   end
 
@@ -31,12 +32,12 @@ class EventsController < ApplicationController
   end
 
   def edit
-    get_event_by_id
+    event_by_id
     authorize @event
   end
 
   def update
-    get_event_by_id
+    event_by_id
     if @event.update(event_params.merge(creator_id: current_user.id))
       redirect_to @event, notice: 'Event updated successfully.'
     else
@@ -46,7 +47,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    get_event_by_id
+    event_by_id
     @event.destroy
     flash.notice = 'Event was deleted.'
     redirect_to(@event)
@@ -58,22 +59,22 @@ class EventsController < ApplicationController
   end
 
   def past
-    get_all_event
+    all_events
   end
 
   def upcoming
-    get_all_event
+    all_events
   end
 
   def current
-    get_all_event
+    all_events
   end
 
-  def get_all_event
+  def all_events
     @events = Event.all
   end
 
-  def get_event_by_id
+  def event_by_id
     @event = Event.find(params[:id])
   end
 

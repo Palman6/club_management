@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# EventPolicy
 class EventPolicy < ApplicationPolicy
   def index?
     true
