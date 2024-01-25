@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Initial Setup   
 
-Things you may want to cover:
+**Prerequisites**  
 
-* Ruby version
+The setups steps:  
+    - Git  
+    - Ruby 3.1.4  
+    - Rails 7.1.3  
+    - sqlite3   
+    - graphql 
 
-* System dependencies
+**1. Check out the repository and install the needed gem** 
 
-* Configuration
+```
+git clone git@github.com:Palman6/club_management.git
+cd club_management
+bundle install
+```
 
-* Database creation
+**2. Execute test** 
+```
+ rspec
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**3. Check Grapgql API** 
+```
+http://localhost:3000/graphiql
+```

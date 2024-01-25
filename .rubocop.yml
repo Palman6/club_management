@@ -22,6 +22,7 @@ AllCops:
     - '.irbrc'
     - 'config/initializers/*'
     - 'app/graphql/*'
+    - 'app/controllers/users/*'
 
 Metrics/ClassLength:
   Max: 150

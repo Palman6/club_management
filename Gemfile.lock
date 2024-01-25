@@ -121,6 +121,13 @@ GEM
     error_highlight (0.6.0)
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.5)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     font-awesome-sass (6.5.1)
       sassc (~> 2.0)
@@ -315,6 +322,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (6.1.0)
+      activesupport (>= 5.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -331,6 +340,7 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    test-prof (1.3.1)
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -373,6 +383,8 @@ DEPENDENCIES
   devise (~> 4.9)
   devise-bootstrap-views (~> 1.0)
   error_highlight (>= 0.4.0)
+  factory_bot_rails
+  faker
   font-awesome-sass (~> 6.5.1)
   graphiql-rails
   graphql (~> 2.2)
@@ -390,9 +402,11 @@ DEPENDENCIES
   rubocop-rails
   sassc-rails
   selenium-webdriver
+  shoulda-matchers (~> 6.0)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  test-prof (~> 1.0)
   turbo-rails
   tzinfo-data
   web-console
