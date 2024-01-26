@@ -4,14 +4,14 @@ FactoryBot.define do
   factory :event do
     name { Faker::Name.name }
     location { Faker::Address.full_address }
-    description { Faker::Lorem.sentences }
+    description { Faker::Lorem.paragraphs }
     date { Faker::Date.in_date_period(month: 1) }
   end
 
   factory :event_update do
     name { Faker::Name.name }
     location { Faker::Address.full_address }
-    description { Faker::Lorem.sentences }
+    description { Faker::Lorem.paragraphs }
     date { Faker::Date.in_date_period(month: 1) }
   end
 end

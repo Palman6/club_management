@@ -19,6 +19,7 @@ class NewsController < ApplicationController
       flash.notice = 'News added successfully.'
       redirect_to(news_index_path)
     else
+      flash.alert = 'All fields are required and content must be atleast 15 letters'
       render :new, status: :unprocessable_entity
     end
     authorize @news

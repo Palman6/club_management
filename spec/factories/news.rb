@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :news do
     title { 'Test user' }
-    content { 'Test news' }
+    content { Faker::Lorem.paragraphs }
   end
 end

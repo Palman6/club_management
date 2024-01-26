@@ -18,7 +18,9 @@
             <div class="card-body">
                 <h5 class="card-title"><%= news.title %></h5>
                 <p class="card-text"><%= news.content %></p>
+                <% if !news.image_attachment.nil? %>
                 <%= image_tag(news.image, style: "width: 400px; height: auto") %>
+                <% end %>
             </div>
             </div>
         <% end %>

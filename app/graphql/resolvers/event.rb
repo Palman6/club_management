@@ -3,13 +3,15 @@
 module Resolvers
   # description 'Fetch Event details'
   class Event < BaseResolver
-    # description 'Fetch Event details'
+    description 'Fetch Event details'
 
-    # argument :id, ID, 'ID of event', required: true
-    # type Types::EventType, null: false
+    type Types::EventType, null: true
+    argument :id, ID, 'ID of event', required: true
 
-    def event
-      authorize(::Event.all, :index?)
+    def resolve(id:)
+      event = ::Event.find(id)
+      authorize(event, :show?)
     end
+    
   end
 end

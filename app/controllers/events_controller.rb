@@ -26,6 +26,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: 'Event created successfully.'
     else
+      flash.alert = 'All are required field and description must be atleast 15 letters'
       render :new, status: :unprocessable_entity
     end
     authorize @event

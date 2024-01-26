@@ -10,8 +10,17 @@ module Types
     connection_type_class(Types::BaseConnection)
     field_class Types::BaseField
 
+    private
+    
     def current_user
       context[:current_user]
     end
+
+    # def authenticate!
+    #   if current_user.blank?
+    #     raise GraphQL::ExecutionError, "Authentication failed, you must be signed in!"
+    #   end
+    # end
+
   end
 end
