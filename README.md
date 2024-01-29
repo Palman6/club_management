@@ -1,6 +1,9 @@
-# README
 
 ![Alt text](image.png)
+
+**Club Management**  
+Club Management Application is a platform where users can host events and share relevant news with other users who have access to the portal.
+
 ## Initial Setup   
 
 **Prerequisites**  
