@@ -16,7 +16,9 @@ class News < ApplicationRecord
   private
 
   def set_default_image
-    return if self.image ||= 'default.jpg' unless image.attached?
+    return if image.attached?
+
+    nil if self.image ||= 'default.jpg'
   end
 
   def notify_user

@@ -14,9 +14,7 @@ module Types
     field :image_url, String, null: false
 
     def image_url
-      if object.image.present?
-        rails_blob_path(object.image, only_path: true)
-      end
+      rails_blob_path(object.image, only_path: true) if object.image.blank?
     end
   end
 end

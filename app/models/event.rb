@@ -8,13 +8,13 @@ class Event < ApplicationRecord
 
   has_one_attached :image
   belongs_to :creator, class_name: 'User'
-  has_many :attendings, foreign_key: :attended_event_id, dependent: :destroy
+  has_many :attendings, foreign_key: :attended_event_id, dependent: :destroy, inverse_of: :attended_event
   has_many :attendees, through: :attendings, dependent: :destroy
 
   validates :name, :location, :date, presence: true
   validates :description, presence: true, length: { minimum: 15 }
   # validates_presence_of :image
-  validates_presence_of :creator_id
+  validates :creator_id, presence: true
 
   after_update :notify_user
 

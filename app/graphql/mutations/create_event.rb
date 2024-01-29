@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
+  # create event mutation class
   class CreateEvent < Mutations::BaseMutation
     argument :name, String, required: true
     argument :description, String, required: true

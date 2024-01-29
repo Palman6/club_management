@@ -14,7 +14,9 @@
                     <article class="media">
                       <div class="media-content">
                         <div class="content">
-                          <%= image_tag(@event.image, style: "width: 400px; height: auto") %>
+                          <% if !@event.image_attachment.nil? %>
+                           <%= image_tag(@event.image, style: "width: 400px; height: auto") %>
+                          <% end %>
                           <p><strong>Location:</strong> <%= @event.location %></p>
                           <p><strong>Date:</strong> <%= @event.date %></p>
                           <p><strong>Details:</strong> <%= @event.description %></p>

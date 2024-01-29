@@ -1,6 +1,11 @@
 require: rubocop-rails
-# AllCops:
-#   SuggestExtensions: false
+
+AllCops:
+  SuggestExtensions: false
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 3.1.4
+  NewCops: enable
 
 AllCops:
   Exclude:
@@ -24,8 +29,22 @@ AllCops:
     - 'app/graphql/*'
     - 'app/controllers/users/*'
 
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+  AllowedMethods:
+    - configure
+    - context
+    - describe
+    - factory
+    - FactoryBot.define
+    - it
+    - context
+    - included
+
 Metrics/ClassLength:
   Max: 150
+
 Metrics/MethodLength:
   Enabled: false
 

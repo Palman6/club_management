@@ -4,7 +4,6 @@
 module Types
   # mutation types
   class EventType < Types::BaseObject
-
     field :id, ID, null: false
     field :event_id, Integer
     field :creator_id, Integer

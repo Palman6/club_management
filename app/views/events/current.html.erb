@@ -4,7 +4,9 @@
 <% if !@events.current_events.empty? %> 
     <% @events.current_events.each do |event| %>
         <div class="card m-4" style="width: 23.3rem;">
-           <%= image_tag(event.image, style: "width: 100%; height: auto", class: 'p-2') %>   
+            <% if !event.image_attachment.nil? %>
+            <%= image_tag(event.image, style: "width: 100%; height: auto", class: 'p-2') %>
+            <% end %>
             <div class="card-body">
             <h5 class="card-title">Name: <%= event.name %></h5>
             <p class="card-text">Description: <%= event.description %></p>

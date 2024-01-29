@@ -11,7 +11,7 @@ module Types
     field_class Types::BaseField
 
     private
-    
+
     def current_user
       context[:current_user]
     end
@@ -21,6 +21,5 @@ module Types
     #     raise GraphQL::ExecutionError, "Authentication failed, you must be signed in!"
     #   end
     # end
-
   end
 end

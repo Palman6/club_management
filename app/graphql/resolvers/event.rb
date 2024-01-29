@@ -12,6 +12,5 @@ module Resolvers
       event = ::Event.find(id)
       authorize(event, :show?)
     end
-    
   end
 end
