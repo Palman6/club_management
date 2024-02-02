@@ -2,10 +2,12 @@
 
 # Model
 class User < ApplicationRecord
+  include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: self
 
   enum role: { admin: 0, member: 1 }
   enum gender: { male: 0, female: 1 }
@@ -15,6 +17,10 @@ class User < ApplicationRecord
   has_many :attended_events, through: :attendings, dependent: :destroy
 
   after_create :registration_notification
+
+  def jwt_payload
+    super
+  end
 
   def registration_notification
     return unless persisted?
