@@ -17,11 +17,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    user_by_id
+    user
   end
 
   def edit
-    user_by_id
+    user
     authorize @user
   end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_by_id
+    user
     authorize @user
 
     if @user.destroy
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def user_by_id
+  def user
     @user = User.find(params[:id])
   end
 end
