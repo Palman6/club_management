@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   include Pundit::Authorization
 
   def index
-    @news = ::News.all.order('created_at DESC')
+    @pagy, @news = pagy(::News.all.order('created_at DESC'), items: 10)
   end
 
   def new
