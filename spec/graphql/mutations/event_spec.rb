@@ -6,14 +6,13 @@ RSpec.describe Mutations::CreateEvent, type: :request do
   let_it_be(:user1) { create(:user) }
   let_it_be(:event) { create(:event, creator: user1) }
 
-
   describe 'Create Event' do
     let_it_be(:variables) do
       {
         input: {
           name: Faker::Name.name,
           description: Faker::Lorem.paragraph,
-          date: Faker::Date.in_date_period(month: 1).strftime('%Y-%m-%d'),
+          date: Faker::Date.between(from: Date.today, to: Date.today + 1.month).strftime('%Y-%m-%d'),
           location: Faker::Address.full_address
         }
       }
@@ -32,12 +31,12 @@ RSpec.describe Mutations::CreateEvent, type: :request do
           id: event.id,
           name: Faker::Name.name,
           description: Faker::Lorem.paragraph,
-          date: Faker::Date.in_date_period(month: 1).strftime('%Y-%m-%d'),
+          date: Faker::Date.between(from: Date.today, to: Date.today + 1.month).strftime('%Y-%m-%d'),
           location: Faker::Address.full_address
         }
       }
     end
-  
+
     it 'should update event' do
       result = ClubManagementSchema.execute(update_query, context: { current_user: user1 }, variables:)
       expect(result['data']['updateEvent']['event']['id'].to_i).to eq(event.id)

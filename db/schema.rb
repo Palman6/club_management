@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_02_064053) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_07_060307) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -91,8 +91,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_064053) do
     t.integer "role"
     t.string "name"
     t.integer "gender"
-    t.string "jti", null: false
+    t.string "jti", default: "default_value", null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -5,13 +5,13 @@ FactoryBot.define do
     name { Faker::Name.name }
     location { Faker::Address.full_address }
     description { Faker::Lorem.paragraphs }
-    date { Faker::Date.in_date_period(month: 1) }
+    date { Faker::Date.between(from: Date.today, to: Date.today + 1.month) }
   end
 
   factory :event_update do
     name { Faker::Name.name }
     location { Faker::Address.full_address }
     description { Faker::Lorem.paragraphs }
-    date { Faker::Date.in_date_period(month: 1) }
+    date { Faker::Date.between(from: Date.today, to: Date.today + 1.month)}
   end
 end

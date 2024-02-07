@@ -20,6 +20,11 @@ class UsersController < ApplicationController
     user
   end
 
+  def create
+    @user = current_user
+    authorize @user
+  end
+
   def edit
     user
     authorize @user
@@ -33,11 +38,11 @@ class UsersController < ApplicationController
     user
     authorize @user
 
-    if @user.destroy
-      flash[:notice] = t('.flash.notice')
-    else
-      flash[:notice] = t('.flash.alert')
-    end
+    flash[:notice] = if @user.destroy
+                       t('.flash.notice')
+                     else
+                       t('.flash.alert')
+                     end
     redirect_to root_path
   end
 

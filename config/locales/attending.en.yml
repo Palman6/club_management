@@ -1,6 +1,7 @@
 en:
-  attending:
+  attendings:
     destroy:
       flash:
         notice: "You are no longer attending this event."
         alert: "No event or no valid data."
+        notice1: "You removed user from event"
