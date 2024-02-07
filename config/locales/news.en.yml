@@ -1,0 +1,6 @@
+en:
+  news:
+    create:
+      flash:
+        notice: "News created successfully."
+        alert: "Not possible to create"

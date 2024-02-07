@@ -1,0 +1,14 @@
+en:
+  events:
+    create:
+      flash:
+        notice: "Event created successfully."
+        alert: "Not possible to create"
+    update:
+      flash:
+        notice: "Event updated successfully."
+        alert: "Not possible to update"
+    destroy:
+      flash:
+        notice: "Event deleted successfully."
+        alert: "Not possible to delete"

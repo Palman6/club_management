@@ -1,0 +1,6 @@
+en:
+  attending:
+    destroy:
+      flash:
+        notice: "You are no longer attending this event."
+        alert: "No event or no valid data."

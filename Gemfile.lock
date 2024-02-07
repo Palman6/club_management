@@ -118,6 +118,9 @@ GEM
     devise-jwt (0.11.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.8)
+    devise_invitable (2.0.9)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
@@ -277,6 +280,8 @@ GEM
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    redis-client (0.19.1)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
@@ -338,6 +343,11 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (6.1.0)
       activesupport (>= 5.2.0)
+    sidekiq (7.2.1)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -402,6 +412,7 @@ DEPENDENCIES
   devise (~> 4.9)
   devise-bootstrap-views (~> 1.0)
   devise-jwt
+  devise_invitable
   error_highlight (>= 0.4.0)
   factory_bot_rails
   faker
@@ -424,6 +435,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   shoulda-matchers (~> 6.0)
+  sidekiq
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

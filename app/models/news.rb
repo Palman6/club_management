@@ -26,7 +26,7 @@ class News < ApplicationRecord
 
     Rails.logger.info 'Sending emails to all users'
     User.where.not(id: creator_id).find_each do |user|
-      NewsMailer.new_news_email(user, self).deliver_now
+      NewsMailer.new_news_email(user, self).deliver_later
     end
   end
 end

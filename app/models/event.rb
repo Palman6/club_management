@@ -13,6 +13,7 @@ class Event < ApplicationRecord
 
   validates :name, :location, :date, presence: true
   validates :description, presence: true, length: { minimum: 15 }
+  validates_comparison_of :date, greater_than_or_equal_to: DateTime.now
   # validates_presence_of :image
   validates :creator_id, presence: true
 
@@ -24,7 +25,7 @@ class Event < ApplicationRecord
     Rails.logger.info 'Sending emails to all prticipants'
     participants = attendees.reject { |user| user.id == creator_id }
     participants.each do |user|
-      EventsMailer.event_update_email(user, self).deliver_now
+      EventsMailer.event_update_email(user, self).deliver_later
     end
   end
 end

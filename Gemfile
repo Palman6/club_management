@@ -70,6 +70,7 @@ end
 gem 'devise', '~> 4.9'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'devise-jwt'
+gem 'devise_invitable'
 
 gem 'pry'
 
@@ -94,3 +95,5 @@ gem 'rubocop-rails', require: false
 gem 'letter_opener', group: :development
 
 gem 'pagy'
+
+gem 'sidekiq'

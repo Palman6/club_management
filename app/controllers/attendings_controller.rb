@@ -22,9 +22,9 @@ class AttendingsController < ApplicationController
     @attending = Attending.find_by(attendee_params)
 
     if @attending.destroy
-      flash.notice = 'You are no longer attending this event.'
+      flash[:notice] = t('.flash.notice')
     else
-      flash.alert = 'No event or no valid data.'
+      flash[:alert] = t('.flash.notice')
     end
     redirect_to(@attending.attended_event)
   end

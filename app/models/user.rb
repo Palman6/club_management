@@ -26,6 +26,6 @@ class User < ApplicationRecord
     return unless persisted?
 
     Rails.logger.info 'Sending emails to registered user'
-    UsersMailer.registration_email(self).deliver_now
+    UsersMailer.registration_email(self).deliver_later
   end
 end

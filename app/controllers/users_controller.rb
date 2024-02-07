@@ -34,9 +34,9 @@ class UsersController < ApplicationController
     authorize @user
 
     if @user.destroy
-      flash[:notice] = 'User deleted successfully.'
+      flash[:notice] = t('.flash.notice')
     else
-      flash[:alert] = 'Unable to delete user.'
+      flash[:notice] = t('.flash.alert')
     end
     redirect_to root_path
   end
