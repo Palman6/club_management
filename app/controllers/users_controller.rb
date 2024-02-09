@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    @pagy, @users = pagy(User.all, items: 10)
     authorize @users
   end
 
@@ -17,11 +17,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    user_by_id
+    user
+  end
+
+  def create
+    @user = current_user
+    authorize @user
   end
 
   def edit
-    user_by_id
+    user
     authorize @user
   end
 
@@ -30,18 +35,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_by_id
+    user
     authorize @user
 
-    if @user.destroy
-      flash[:notice] = 'User deleted successfully.'
-    else
-      flash[:alert] = 'Unable to delete user.'
-    end
+    flash[:notice] = if @user.destroy
+                       t('.flash.notice')
+                     else
+                       t('.flash.alert')
+                     end
     redirect_to root_path
   end
 
-  def user_by_id
+  def user
     @user = User.find(params[:id])
   end
 end

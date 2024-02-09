@@ -90,5 +90,22 @@ module Users
     # def after_inactive_sign_up_path_for(resource)
     #   super(resource)
     # end
+
+    # respond_to :json
+
+    # private
+
+    # def respond_with(resource, options={})
+    #   if resource.persisted?
+    #     render json: {
+    #       status: { code: 200, message: 'Signed up successfully.', data: resource}, status: :ok
+    #     }
+    #   else 
+    #     render json: {
+    #       status: {message: 'User not created', errors: resource.errors.full_messages },
+    #       status: :unprocessable_entity
+    #   }
+      
+    # end
   end
 end

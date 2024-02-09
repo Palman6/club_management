@@ -2,10 +2,12 @@
 
 # Model
 class User < ApplicationRecord
+  include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: self
 
   enum role: { admin: 0, member: 1 }
   enum gender: { male: 0, female: 1 }
@@ -20,6 +22,6 @@ class User < ApplicationRecord
     return unless persisted?
 
     Rails.logger.info 'Sending emails to registered user'
-    UsersMailer.registration_email(self).deliver_now
+    UsersMailer.registration_email(self).deliver_later
   end
 end

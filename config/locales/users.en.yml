@@ -1,0 +1,6 @@
+en:
+  users:
+    destroy:
+      flash:
+        notice: "User deleted successfully."
+        alert: "Not possible to delete"

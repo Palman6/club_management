@@ -5,13 +5,13 @@ class EventsController < ApplicationController
   include Pundit::Authorization
 
   def index
-    all_events
+    events
     authorize @events
   end
 
   def show
-    all_events
-    event_by_id
+    events
+    event
     authorize @event
   end
 
@@ -24,34 +24,37 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.creator = current_user if current_user.admin?
     if @event.save
-      redirect_to @event, notice: 'Event created successfully.'
+      redirect_to(@event)
+      flash[:notice] = t('.flash.notice')
     else
-      flash.alert = 'All are required field and description must be atleast 15 letters'
+      flash[:alert] = error_messages_for(@event)
       render :new, status: :unprocessable_entity
     end
     authorize @event
   end
 
   def edit
-    event_by_id
+    event
     authorize @event
   end
 
   def update
-    event_by_id
+    event
     if @event.update(event_params.merge(creator_id: current_user.id))
-      redirect_to @event, notice: 'Event updated successfully.'
+      redirect_to(@event)
+      flash[:notice] = t('.flash.notice')
     else
+      flash[:alert] = error_messages_for(@event)
       render :edit, status: :unprocessable_entity
     end
     authorize @event
   end
 
   def destroy
-    event_by_id
+    event
     @event.destroy
-    flash.notice = 'Event was deleted.'
-    redirect_to(@event)
+    flash[:notice] = t('.flash.notice')
+    redirect_to '/my_event'
     authorize @event
   end
 
@@ -60,26 +63,32 @@ class EventsController < ApplicationController
   end
 
   def past
-    all_events
+    events
   end
 
   def upcoming
-    all_events
+    events
   end
 
   def current
-    all_events
+    events
   end
 
-  def all_events
+  def events
     @events = Event.all
   end
 
-  def event_by_id
+  def event
     @event = Event.find(params[:id])
   end
 
   def event_params
     params.require(:event).permit(:name, :description, :location, :date, :image)
+  end
+
+  private
+
+  def error_messages_for(event)
+    event.errors.full_messages.uniq.map { |msg| t("errors.messages.#{msg.downcase}", default: msg) }.join(', ')
   end
 end

@@ -22,11 +22,18 @@ class AttendingsController < ApplicationController
     @attending = Attending.find_by(attendee_params)
 
     if @attending.destroy
-      flash.notice = 'You are no longer attending this event.'
+      flash[:notice] = if @attending.attendee_id == current_user.id
+                         t('.flash.notice')
+                       else
+                         t('.flash.notice1')
+                       end
     else
-      flash.alert = 'No event or no valid data.'
+      flash[:alert] = t('.flash.alert')
     end
     redirect_to(@attending.attended_event)
+    return unless @attending.attendee_id != current_user.id
+
+    AttendeeMailer.attendee_remove_email(@attending.attendee_id, @attending.attended_event_id).deliver_later
   end
 
   def attendee_params

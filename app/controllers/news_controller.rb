@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   include Pundit::Authorization
 
   def index
-    @news = ::News.all.order('created_at DESC')
+    @pagy, @news = pagy(::News.all.order('created_at DESC'), items: 10)
   end
 
   def new
@@ -16,10 +16,10 @@ class NewsController < ApplicationController
   def create
     @news = News.new(news_params.merge(creator_id: current_user.id))
     if @news.save
-      flash.notice = 'News added successfully.'
       redirect_to(news_index_path)
+      flash[:notice] = t('.flash.notice')
     else
-      flash.alert = 'All fields are required and content must be atleast 15 letters'
+      flash[:alert] = error_messages_for(@news)
       render :new, status: :unprocessable_entity
     end
     authorize @news
@@ -27,5 +27,9 @@ class NewsController < ApplicationController
 
   def news_params
     params.require(:news).permit(:title, :content, :image)
+  end
+
+  def error_messages_for(news)
+    news.errors.full_messages.uniq.map { |msg| t("errors.messages.#{msg.downcase}", default: msg) }.join(', ')
   end
 end
